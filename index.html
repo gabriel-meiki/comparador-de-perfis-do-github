@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile-GitHub-Comparator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div>
+            <span id="logo">Comparador de Perfis do GitHub</span>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#">Pesquise</a>
+                    </li>
+                    <li>
+                        <a href="#o-que-e">O que é</a>
+                    </li>
+                    <li>
+                        <a href="#como-usar">Como usar</a>
+                    </li>
+                    <li>
+                        <a href="#Por-que-usar">Por que usar</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="buscador-de-usuarios">
+            <h1>Compare dois usuários no GitHub</h1>
+            <div class="buscador-de-usuarios-search">
+               
+                <label for="primeiro-usuario">Username do primeiro usuário:</label>
+                <input type="text" name="primeiro-usuario" id="primeiro-usuario" placeholder="Digite o username do primeiro usuário">
+                <label for="segundo-usuario">Username do primeiro usuário:</label>
+                <input type="text" name="segundo-usuario" id="segundo-usuario" placeholder="Digite o username do segundo usuário">
+
+                <button id="btnSubmit" onclick="mostrarResultado()">Comparar</button>
+            
+            </div>
+            <div id="resultado-da-busca">
+                
+            </div>
+
+        </section>
+
+        <section>
+            <div id="o-que-e">
+                <h2>O que é a ferramenta Comparador de Perfis do Github?</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro aliquid voluptatibus alias, ea commodi provident! Numquam, magni aspernatur a unde praesentium ipsum tempora nobis. Iure labore soluta voluptatibus optio possimus.</p>
+            </div>
+
+            <div id="como-usar">
+                <h2>Como usar a ferramenta de comparação de perfis do GitHub:</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro aliquid voluptatibus alias, ea commodi provident! Numquam, magni aspernatur a unde praesentium ipsum tempora nobis. Iure labore soluta voluptatibus optio possimus.</p>
+            </div>
+
+            <div id="Por-que-usar">
+                <h2>Por que usar a ferramenta Comparador de Perfis do Github?</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro aliquid voluptatibus alias, ea commodi provident! Numquam, magni aspernatur a unde praesentium ipsum tempora nobis. Iure labore soluta voluptatibus optio possimus.</p>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16475026138"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-16475026138');
+    </script>
+</body>
+</html>

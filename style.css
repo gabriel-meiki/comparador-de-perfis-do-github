@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --cor-de-fundo: #222831;
+    --cor-de-fonte: #EEEEEE;
+    --cor-de-titulo: #00ADB5;
+    --cor-de-fundo-input: #393E46;
+    --fonte-titulo: "Atkinson Hyperlegible Mono", serif;
+    --fonte-paragrafo: 'Lato', serif;
+}
+
+header{
+    background-color: var(--cor-de-fundo);
+    color: var(--cor-de-fonte);
+    padding: 25px 30px;
+}
+
+header div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1200px;
+    margin: auto;
+}
+
+header #logo{
+    font-size: 1.7rem;
+    font-family: var(--fonte-titulo);
+}
+
+header nav ul {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+}
+
+header nav ul li a{
+    color: var(--cor-de-fonte);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-family: var(--fonte-paragrafo);
+}
+
+.buscador-de-usuarios{
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
