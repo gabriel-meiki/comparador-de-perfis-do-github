@@ -15,16 +15,25 @@ let resultado = document.querySelector('#resultado-da-busca');
 async function mostrarResultado(){
     let primeiroUsuario = primeiroUsuarioInput.value
     let segundoUsuario = segundoUsuarioInput.value
-    let usuario1 = await buscarPerfil(`${primeiroUsuario}`);
-    let usuario2 = await buscarPerfil(`${segundoUsuario}`);
+
+    try{
+        let usuario1 = await buscarPerfil(`${primeiroUsuario}`);
+        let usuario2 = await buscarPerfil(`${segundoUsuario}`);
 
     resultado.innerHTML = `<p> ${usuario1.login} e ${usuario2.name} </p>`;
+    } catch (erro) {
+        console.log('Deu erro', erro)
+    }
 }
 
 async function buscarPerfil(usuarioNome) {
-    const resposta = await fetch(`https://api.github.com/users/${usuarioNome}`);
-    const usuarioInfo = await resposta.json();
-    return usuarioInfo;
+    try {
+        const resposta = await fetch(`https://api.github.com/users/${usuarioNome}`);
+        const usuarioInfo = await resposta.json();
+        return usuarioInfo;
+    } catch (erro) {
+        console.log(`Deu erro ${erro}`)
+    }
 }
 
 
