@@ -1,53 +1,94 @@
 let primeiroUsuarioInput = document.querySelector('#first-username');
 let segundoUsuarioInput = document.querySelector('#second-username');
 
-let resultado = document.querySelector('#resultado-da-busca');
+let resultado = document.querySelector('#show-results');
+let mostrar = false;
+
+let button = document.querySelector('#reiniciar');
+
+verificador();
+
+
+function abrirFecharResultado(){
+
+    mostrar = !mostrar;
+
+    if (mostrar){
+        resultado.style.display = 'block';
+        reiniciar.innerHTML = 'Fechar resultado'
+
+    } else {
+        resultado.style.display = 'none'
+        reiniciar.innerHTML = 'Abrir resultado'
+    }
+}
+
+
 
 async function mostrarResultado(){
     let primeiroUsuario = primeiroUsuarioInput.value
     let segundoUsuario = segundoUsuarioInput.value
 
-    try{
-        let usuario1 = await buscarPerfil(`${primeiroUsuario}`);
-        let usuario2 = await buscarPerfil(`${segundoUsuario}`);
+    if (verificador()){
+        mostrar = !mostrar;
+        console.log(mostrar)
 
-        console.log(usuario1, usuario2)
-        resultado.innerHTML = `<p> ${usuario1.login} e ${usuario2.name} </p>`;
-
-        let primeiraFoto = document.querySelector('#photo-first-user');
-        let segundaFoto = document.querySelector('#photo-second-user');
-        primeiraFoto.setAttribute("src", usuario1.avatar_url);
-        segundaFoto.setAttribute("src", usuario2.avatar_url);
-
-        let primeiroNome = document.querySelector('#nome-primeiro-usuario')
-        let segundoNome = document.querySelector('#nome-segundo-usuario')
-        primeiroNome.innerHTML = `${usuario1.name}`
-        segundoNome.innerHTML = `${usuario2.name}`
-
-        let infoPrimeiroUsuario = document.querySelector('#infomations-first-user');
-        let infoPrimeiroLink = `https://github-readme-stats.vercel.app/api?username=${usuario1.login}&show_icons=true&theme=chartreuse-dark&locale=pt-br`;
-        infoPrimeiroUsuario.setAttribute('src', infoPrimeiroLink);
-
-        let infoSegundoUsuario = document.querySelector('#informations-second-user');
-        let infoSegundoLink = `https://github-readme-stats.vercel.app/api?username=geovanecss&show_icons=true&theme=midnight-purple&locale=pt-br`;
-        infoSegundoUsuario.setAttribute('src', infoSegundoLink);
-
-        let linguagensPrimeiroUsuario = document.querySelector('#languages-first-user');
-        let linklinguagensPrimeiroUsuario = `https://github-readme-stats.vercel.app/api/top-langs/?username=${usuario1.login}&size_weight=0.5&count_weight=0.5&theme=chartreuse-dark&&locale=pt-br&langs_count=7`;
-        linguagensPrimeiroUsuario.setAttribute('src', linklinguagensPrimeiroUsuario);
-
-        let linguagensSegundoUsuario = document.querySelector('#languages-second-user');
-        let linklinguagensSegundoUsuario = `https://github-readme-stats.vercel.app/api/top-langs/?username=${usuario2.login}&size_weight=0.5&count_weight=0.5&theme=midnight-purple&locale=pt-br&langs_count=7`;
-        linguagensSegundoUsuario.setAttribute('src', linklinguagensSegundoUsuario);
-
-        let mostrarComparacoes = document.querySelector('#show-results');
-        if (!usuario1 && !usuario2) {
-            mostrarComparacoes.style.display = 'none'
-        } 
+        button.style.display = 'block';
+        resultado.style.display = 'block'
         
-    } catch (erro) {
-        console.log('Deu erro', erro)
+
+        try{
+            let usuario1 = await buscarPerfil(`${primeiroUsuario}`);
+            let usuario2 = await buscarPerfil(`${segundoUsuario}`);
+
+            renderizarHTML(usuario1, usuario2);
+    
+    
+            if (!usuario1 && !usuario2) {
+                mostrarComparacoes.style.display = 'none'
+            } 
+            
+        } catch (erro) {
+            console.log('Deu erro', erro)
+        }
+    } else {
+        alert('tem coisa errada');
+        button.style.display = 'none';
+        resultado.style.display = 'none';
     }
+    
+}
+
+function renderizarHTML(firstUsername, secondUsername){
+    // Renderizar os nomes de usuário
+    let primeiroNome = document.querySelector('#nome-primeiro-usuario')
+    let segundoNome = document.querySelector('#nome-segundo-usuario')
+    primeiroNome.innerHTML = `${firstUsername.name}`
+    segundoNome.innerHTML = `${secondUsername.name}`
+
+    // Renderizando as fotos de perfis
+    let primeiraFoto = document.querySelector('#photo-first-user');
+    let segundaFoto = document.querySelector('#photo-second-user');
+    primeiraFoto.setAttribute("src", firstUsername.avatar_url);
+    segundaFoto.setAttribute("src", secondUsername.avatar_url);
+
+    // Renderizando as informações de usuário
+    let infoPrimeiroUsuario = document.querySelector('#infomations-first-user');
+    let infoPrimeiroLink = `https://github-readme-stats.vercel.app/api?username=${firstUsername.login}&show_icons=true&theme=chartreuse-dark&locale=pt-br`;
+    infoPrimeiroUsuario.setAttribute('src', infoPrimeiroLink);
+    let infoSegundoUsuario = document.querySelector('#informations-second-user');
+    let infoSegundoLink = `https://github-readme-stats.vercel.app/api?username=${secondUsername.login}&show_icons=true&theme=midnight-purple&locale=pt-br`;
+    infoSegundoUsuario.setAttribute('src', infoSegundoLink);
+
+    // Renderizando as linguagens mais usadas
+    let linguagensPrimeiroUsuario = document.querySelector('#languages-first-user');
+    let linklinguagensPrimeiroUsuario = `https://github-readme-stats.vercel.app/api/top-langs/?username=${firstUsername.login}&size_weight=0.5&count_weight=0.5&theme=chartreuse-dark&&locale=pt-br&langs_count=7`;
+    linguagensPrimeiroUsuario.setAttribute('src', linklinguagensPrimeiroUsuario);
+
+    let linguagensSegundoUsuario = document.querySelector('#languages-second-user');
+    let linklinguagensSegundoUsuario = `https://github-readme-stats.vercel.app/api/top-langs/?username=${secondUsername.login}&size_weight=0.5&count_weight=0.5&theme=midnight-purple&locale=pt-br&langs_count=7`;
+    linguagensSegundoUsuario.setAttribute('src', linklinguagensSegundoUsuario);
+    
 }
 
 async function buscarPerfil(usuarioNome) {
@@ -60,5 +101,14 @@ async function buscarPerfil(usuarioNome) {
     }
 }
 
+function verificador(){
+    button.style.display = 'none';
+    resultado.style.display = 'none';
+    if (primeiroUsuarioInput.value == "" || segundoUsuarioInput.value == ""){
+        return false
+    } else {
+        return true
+    }
+}
 
 

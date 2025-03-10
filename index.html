@@ -51,7 +51,7 @@
                     <p class="text-center">Compare com maior precisão dois candidatos</p>
                 </div>
 
-                <div class="row d-flex justify-content-center p-5">
+                <div class="row d-flex justify-content-center p-3">
                     <div class="col-md-6 col-sm-12">
                         <div class="mb-3">
                             <label for="first-username" class="mb-2">Primeiro usuário:</label>
@@ -62,8 +62,9 @@
                             <input class="form-control" type="text" id="second-username" placeholder="Ex: geovanecss" aria-label="Username do segundo usuário">
                         </div>
 
-                        <div>
-                            <button id="btnSubmit" onclick="mostrarResultado()">Comparar perfis</button>
+                        <div class="d-flex justify-content-between">
+                            <button id="btnSubmit" class="p-2" onclick="mostrarResultado()">Comparar perfis</button>
+                            <button id="reiniciar" class="p-2" onclick="abrirFecharResultado()">Fechar resultado</button>
                         </div>
                     </div>
                 </div>
@@ -112,11 +113,7 @@
                 </div>
             </div>
         </section>
-        <section>
-            <div id="resultado-da-busca">
-
-            </div>
-        </section>
+        
     </main>
     
     <script src="script.js"></script>
